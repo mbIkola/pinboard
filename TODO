@@ -1,1 +1,4 @@
 * Add support of tags
+    select avg(timer.value)*1000, max(timer.value)*1000, min(timer.value)*1000 , timer.id as timerid, tag.name as  tagname, timertag.value as operation, timer.value as time_ms, request.id as request, req_time, server_name, hostname,  script_name   from tag, timertag, timer, request where tag.id=timertag.tag_id and timer.id = timertag.timer_id and request.id=timer.request_id and tag.name="operation" and timertag.value="queryip" and hostname=$hostname;
+    select avg(timer.value)*1000, max(timer.value)*1000, min(timer.value)*1000 , timer.id as timerid, tag.name as  tagname, timertag.value as operation, timer.value as time_ms, request.id as request, req_time, server_name, hostname,  script_name   from tag, timertag, timer, request where tag.id=timertag.tag_id and timer.id = timertag.timer_id and request.id=timer.request_id and tag.name="operation" and timertag.value="queryip" group by script_name, hostname; 
+
